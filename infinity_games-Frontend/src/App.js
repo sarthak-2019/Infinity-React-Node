@@ -84,12 +84,6 @@ const Heading = styled.div`
   }
 `;
 
-const GameContainer = styled.div`
-  width: 100%;
-  height: 500px;
-  scroll-margin-top: 100px;
-`;
-
 function App() {
   const [click, setclick] = useState(false);
 
@@ -173,9 +167,7 @@ function App() {
             </Heading>
           </BackDrop>
         </VideoContainer>
-        <GameContainer name="games" id="games">
-          <Game />
-        </GameContainer>
+        <Game />
         <About />
       </BrowserRouter>
     </React.Fragment>

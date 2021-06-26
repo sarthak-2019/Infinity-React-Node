@@ -23,6 +23,10 @@ const Card = styled.div`
     svg {
     }
   }
+  img {
+    width: 70px;
+    height: 70px;
+  }
 `;
 
 const CardText = styled.div`
@@ -43,21 +47,18 @@ const Category = styled.div`
   font-weight: 500;
 `;
 
-const Image = styled.img``;
-
 const Arrow = styled(AiOutlineDoubleRight)`
   font-size: 40px;
-  /* margin-left: 20px; */
 `;
 
-const Cards = () => {
+const Cards = (props) => {
   return (
     <Container>
       <Card>
-        <Image src="https://source.unsplash.com/70x70/?nature,water" />
+        <img src={props.image} width="100px" />
         <CardText>
-          <Title>Galaxy Run</Title>
-          <Category>Adventure</Category>
+          <Title>{props.title}</Title>
+          <Category>{props.category}</Category>
         </CardText>
         <Arrow />
       </Card>
