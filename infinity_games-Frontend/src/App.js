@@ -116,7 +116,7 @@ function App() {
 
   React.useEffect(() => {
     const options = {
-      strings: ["Welcome To Infinity", "The Game Finder"],
+      strings: ["Welcome To Infinity", "Ultimate Game Finder"],
       typeSpeed: 60,
       backSpeed: 70,
       loop: true,
@@ -158,7 +158,6 @@ function App() {
         </VideoContainer>
         <GameContainer name="games">
           <Game />
-          <Cards />
         </GameContainer>
         <About />
       </BrowserRouter>

@@ -13,18 +13,15 @@ const Container = styled.div`
 
 const Card = styled.div`
   border: 2px solid black;
-  border-radius: 10px;
-  width: 380px;
-  height: 90px;
+  width: 300px;
+  height: 70px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   &:hover {
     cursor: pointer;
-    svg{
-
+    svg {
     }
-    /* background-color: rgba(0,0,0,0.5); */
   }
 `;
 
@@ -37,36 +34,30 @@ const CardText = styled.div`
 `;
 
 const Title = styled.div`
-  font-size: 1.2em;
+  font-size: 1em;
   font-weight: 800;
 `;
 
 const Category = styled.div`
-  font-size: 15px;
+  font-size: 12px;
   font-weight: 500;
 `;
 
-const Image = styled.img`
-  background-image: url("https://source.unsplash.com/50x50/?nature,water");
-  border-top-left-radius: 9px;
-  border-bottom-left-radius: 9px;
-
-  /* border-radius:9px; */
-`;
+const Image = styled.img``;
 
 const Arrow = styled(AiOutlineDoubleRight)`
   font-size: 40px;
-  margin-left: 20px;
+  /* margin-left: 20px; */
 `;
 
 const Cards = () => {
   return (
     <Container>
       <Card>
-        <Image src="https://source.unsplash.com/100x90/?nature,water" />
+        <Image src="https://source.unsplash.com/70x70/?nature,water" />
         <CardText>
-          <Title>Bombay Shooter</Title>
-          <Category>Action</Category>
+          <Title>Galaxy Run</Title>
+          <Category>Adventure</Category>
         </CardText>
         <Arrow />
       </Card>

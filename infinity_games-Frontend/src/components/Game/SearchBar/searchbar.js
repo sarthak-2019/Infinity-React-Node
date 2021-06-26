@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import SearchOutlinedIcon from "@material-ui/icons/SearchOutlined";
 import CloseOutlinedIcon from "@material-ui/icons/CloseOutlined";
 import styled from "styled-components";
-
+import AuthContext from "./../../../context/AuthContext";
+import axios from "axios";
 const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -73,27 +74,51 @@ const Select = styled.select`
   border-left: 2px solid black;
 `;
 
-const Searchbar = (props) => {
-  const [FilteredData, setFilteredData] = useState([]);
-  const [input, setinput] = useState("");
+const Searchbar = () => {
+  const { gameData, setGameData, category, setCategory, input, setInput } =
+    useContext(AuthContext);
 
-  const handleFilter = (event) => {
-    const searchedWord = event.target.value; //curr word using trying to search for
-    setinput(searchedWord);
-    const newFilter = props.data.filter((value) => {
-      return value.name.toLowerCase().includes(searchedWord.toLowerCase());
-    });
-    if (searchedWord == "") {
-      setFilteredData([]);
+  async function categoryHandler(e) {
+    setCategory(e.target.value);
+    if (e.target.value === "All") {
+      const gameList = await axios.get(
+        "https://code-to-thrive-webocode.herokuapp.com/games/allgames"
+      );
+      const temp = gameList.data.data.games;
+      setGameData(temp);
     } else {
-      setFilteredData(newFilter);
+      const gameList = await axios.get(
+        `https://code-to-thrive-webocode.herokuapp.com/games/allgames/${e.target.value}`
+      );
+      const temp = gameList.data.data.games;
+      setGameData(temp);
     }
-  };
+  }
 
-  const clearInput = () => {
-    setFilteredData([]);
-    setinput("");
-  };
+  async function inputHandler(e) {
+    setInput(e.target.value);
+    const searchedWord = e.target.value;
+    if (e.target.value === "") {
+      if (category === "All") {
+        const gameList = await axios.get(
+          "https://code-to-thrive-webocode.herokuapp.com/games/allgames"
+        );
+        const temp = gameList.data.data.games;
+        setGameData(temp);
+      } else {
+        const gameList = await axios.get(
+          `https://code-to-thrive-webocode.herokuapp.com/games/allgames/${category}`
+        );
+        const temp = gameList.data.data.games;
+        setGameData(temp);
+      }
+    } else {
+      const newFilter = gameData.filter((value) => {
+        return value.name.toLowerCase().includes(searchedWord.toLowerCase());
+      });
+      setGameData(newFilter);
+    }
+  }
   return (
     <React.Fragment>
       <MainContainer>
@@ -101,35 +126,18 @@ const Searchbar = (props) => {
           <Logo className="icon" />
           <Input
             value={input}
-            onChange={handleFilter}
+            onChange={(e) => inputHandler(e)}
             placeholder="Search your Game"
           />
-          <Select>
+          <Select value={category} onChange={(e) => categoryHandler(e)}>
             <option value="All">All</option>
             <option value="Arcade">Arcade</option>
             <option value="Adventure">Adventure</option>
             <option value="Action">Action</option>
-            <option value="Puzzle">Adventure</option>
-            <option value="Shooting">Action</option>
+            <option value="Puzzle">Puzzle</option>
+            <option value="Shooting">Shooting</option>
           </Select>
         </Container>
-        <ResultContainer>
-          {FilteredData.length != 0 && (
-            <Result>
-              {FilteredData.slice(0, 5).map((value, key) => {
-                return (
-                  <a
-                    className="dataItem"
-                    href={"/" + value.img_link}
-                    target="_blank"
-                  >
-                    <p>{value.name}</p>
-                  </a>
-                );
-              })}
-            </Result>
-          )}
-        </ResultContainer>
       </MainContainer>
     </React.Fragment>
   );

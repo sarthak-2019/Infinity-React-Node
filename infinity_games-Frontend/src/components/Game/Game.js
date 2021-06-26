@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Searchbar from "./SearchBar/searchbar";
-
+import { AuthContextProvider } from "./../../context/AuthContext";
+import Card from "./Cards";
 const Game = () => {
-  [gameData, gameDataHandler] = useState([]);
   return (
-    <React.Fragment>
-      <Searchbar data={gameData} />
-    </React.Fragment>
+    <AuthContextProvider>
+      <Searchbar />
+    </AuthContextProvider>
   );
 };
 
