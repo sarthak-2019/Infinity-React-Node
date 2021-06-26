@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import game from "./assets/game.mp4";
+import React, { useState, useEffect, useRef } from "react";
+import game from "./assets/video/game.mp4";
 import styled from "styled-components";
 import NavBar from "./components/NavBar/navbar";
 import Typed from "typed.js";
@@ -7,7 +7,6 @@ import Aos from "aos";
 import { BrowserRouter } from "react-router-dom";
 import About from "./components/About/about";
 import Game from "./components/Game/Game";
-import Cards from "./components/Game/Cards";
 
 const VideoContainer = styled.div`
   width: 100%;
@@ -23,8 +22,8 @@ const VideoContainer = styled.div`
     opacity: 1;
     animation: typedjsBlink 0.7s infinite;
     -webkit-animation: typedjsBlink 0.7s infinite;
-    animation: typedjsBlink 0.7s infinite;
   }
+
   @keyframes typedjsBlink {
     50% {
       opacity: 0;
@@ -46,6 +45,18 @@ const VideoContainer = styled.div`
     transition: opacity 0.25s;
     -webkit-animation: 0;
     animation: 0;
+  }
+  @keyframes animate {
+    0% {
+      height: 65px;
+    }
+    100% {
+      height: 55px;
+      background-color: black;
+    }
+  }
+  .animate {
+    animation: animate 0.5s ease-out forwards;
   }
 `;
 
@@ -73,50 +84,28 @@ const Heading = styled.div`
   }
 `;
 
-const Anim = styled.div`
-  background-color: salmon;
-  width: 200px;
-  height: 100px;
-  width: 50%;
-  margin: auto;
-  margin-bottom: 200px;
-  border-radius: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
 const GameContainer = styled.div`
   width: 100%;
   height: 500px;
-`;
-
-const AboutContanier = styled.div`
-  background-color: #aaa;
-  width: 100%;
-  height: 500px;
+  scroll-margin-top: 100px;
 `;
 
 function App() {
-  const [click, setclick] = React.useState(false);
-  const [navbar, setnavbar] = React.useState(false);
+  const [click, setclick] = useState(false);
 
-  const [scrolling, setScrolling] = useState(false);
   const [scrollTop, setScrollTop] = useState(0);
 
-  const el = React.useRef(null);
-  const el1 = React.useRef(null);
+  const el = useRef(null);
 
-  const typed = React.useRef(null);
-  const typed1 = React.useRef(null);
+  const typed = useRef(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     Aos.init({ duration: 1000 });
-  });
+  }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const options = {
-      strings: ["Welcome To Infinity", "Ultimate Game Finder"],
+      strings: ["Welcome To Infinity", "The Game Finder"],
       typeSpeed: 60,
       backSpeed: 70,
       loop: true,
@@ -129,34 +118,62 @@ function App() {
     };
   }, [typed, el]);
 
-  const height = window.innerHeight;
-  React.useEffect(() => {
-    const onScroll = (e) => {
-      setScrollTop(e.target.documentElement.scrollTop);
-      setScrolling(e.target.documentElement.scrollTop > scrollTop);
+  useEffect(() => {
+    const home = document.getElementById("home");
+    const games = document.getElementById("games");
+    const about = document.getElementById("About");
+    console.log(games, about);
+
+    const options = {
+      rootMargin: "-100px 0px 0px 0px",
     };
-    window.addEventListener("scroll", onScroll);
+    const observer1 = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        // console.log(entry.isIntersecting);
+        if (!entry.isIntersecting) {
+          document.getElementById("navbar").classList.add("animate");
+        } else {
+          document.getElementById("navbar").classList.remove("animate");
+        }
+      });
+    }, options);
 
-    console.log(scrollTop);
+    const observer2 = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          const nav_items = document.getElementsByClassName("navbar-items");
+          for (let i = 0; i < nav_items.length; i++) {
+            console.log(nav_items.item(i));
+            if (nav_items.item(i).classList.contains("active")) {
+              nav_items.item(i).classList.remove("active");
+            }
+          }
+          console.log(entry.target, entry.isIntersecting);
+        } else {
+          console.log(entry.target, entry.isIntersecting);
+        }
+      });
+    }, options);
 
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [scrollTop]);
+    observer1.observe(home);
+    observer2.observe(games);
+  }, []);
 
   return (
     <React.Fragment>
       <BrowserRouter>
-        <VideoContainer name="home">
-          <NavBar position={scrollTop} click={click} setclick={setclick} />
+        <VideoContainer name="home" id="home">
+          <NavBar click={click} setclick={setclick} />
           <video autoPlay loop muted>
             <source src={game} type="video/mp4" />
           </video>
-          <BackDrop height={height}>
+          <BackDrop>
             <Heading>
-              <span class="welcome" ref={el} />
+              <span className="welcome" ref={el} />
             </Heading>
           </BackDrop>
         </VideoContainer>
-        <GameContainer name="games">
+        <GameContainer name="games" id="games">
           <Game />
         </GameContainer>
         <About />

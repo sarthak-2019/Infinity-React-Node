@@ -1,35 +1,56 @@
 import React from "react";
 import styled from "styled-components";
 import Aos from "aos";
-import { GiInfinity, GiInternalInjury } from "react-icons/gi";
+import { GiInfinity } from "react-icons/gi";
+import Image from "../../assets/images/keyboard.jpg";
 
 const Container = styled.div`
   width: 100%;
-  margin-top: 100px;
+  height: 150vh;
+  position: relative;
+  background-image: url(${({ img }) => img});
+`;
+
+const Backdrop = styled.div`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-direction: column;
-  height: 800px;
-  width: 80%;
-  margin: 200px auto;
-  gap: 50px;
+  gap: 60px;
+  background: rgba(0, 0, 0, 0.5);
 `;
 
 const Div = styled.div`
   text-align: center;
+  width: 80%;
   font-size: 25.5px;
   line-height: 37.5px;
   font-weight: 600;
-  border: 2px solid black;
-  padding: 20px;
+  display: flex;
+  background: rgba(0, 0, 0, 0.5);
+  box-shadow: 1px 1px 5px #aaa;
+  padding: 30px;
   font-family: "Montserrat", "Helvetica", "Arial", sans-serif;
-  color: rgb(29, 29, 31);
+  div {
+    color: white;
+    width: 100%;
+    text-align: center;
+    span {
+      font-size: 50px;
+    }
+  }
 `;
 
 const Infinity = styled.div`
   display: flex;
   flex-direction: column;
+  color: white;
+  margin-top: 40px;
   gap: 2px;
   hr {
     display: none;
@@ -62,36 +83,60 @@ const Head = styled.div`
     align-items: center;
   }
 `;
+
 const About = () => {
   React.useEffect(() => {
     Aos.init({ duration: 1000 });
   });
 
   return (
-    <Container name="about">
-      <Infinity>
-        <Head data-aos="fade-up">
-          <h2>Infinity </h2>
-          <span>
-            <GiInfinity />
-          </span>
-        </Head>
-        <hr />
-      </Infinity>
+    <Container img={Image} name="about">
+      <Backdrop id="About">
+        <Infinity>
+          <Head data-aos="fade-up">
+            <h2>Infinity </h2>
+            <span>
+              <GiInfinity />
+            </span>
+          </Head>
+          <hr />
+        </Infinity>
 
-      <Div data-aos="fade-left">
-        We found out that searching games by going to every individual website
-        sucks.
-      </Div>
-      <Div data-aos="fade-right">
-        So, We created a Place Called Infinity where you can Search Most of the
-        games available on the Internet and play on OneClick by redirecting.
-      </Div>
-      <Div data-aos="fade-left">An interactive way to search online games.</Div>
-      <Div data-aos="fade-right">Search From many different categories.</Div>
-      <Div data-aos="fade-left">
-        We Provide you the top best games available in the Internet.
-      </Div>
+        <Div data-aos="fade-up">
+          <div>
+            <span>&#8220;</span>
+            We found out that searching games by going to every individual
+            website sucks.
+            <span>&#8221;</span>
+          </div>
+        </Div>
+        <Div data-aos="fade-up">
+          <div>
+            <span>&#8220;</span>
+            So, We created a Place Called Infinity where you can Search Most of
+            the games available on the Internet.
+            <span>&#8221;</span>
+          </div>
+        </Div>
+        <Div data-aos="fade-up">
+          <div>
+            <span>&#8220;</span>An interactive way to search online games.
+            <span>&#8221;</span>
+          </div>
+        </Div>
+        <Div data-aos="fade-up">
+          <div>
+            <span>&#8220;</span>Search From many different categories.
+            <span>&#8221;</span>
+          </div>
+        </Div>
+        <Div data-aos="fade-up">
+          <div>
+            <span>&#8220;</span>We Provide you the top best games available in
+            the Internet<span>&#8221;</span>.
+          </div>
+        </Div>
+      </Backdrop>
     </Container>
   );
 };
