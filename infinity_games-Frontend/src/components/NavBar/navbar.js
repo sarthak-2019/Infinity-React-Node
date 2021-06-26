@@ -9,16 +9,23 @@ const NavbarContainer = styled.div`
   width: 100%;
   display: flex;
   position: fixed;
-  height: 50px;
+  height: 55px;
   justify-content: flex-end;
   align-items: center;
-  padding-top: 20px;
-  #about {
-    margin-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  z-index: 5000;
+  #About {
+    margin-right: 50px;
+  }
+  transition: all 0.2s ease;
+  .active {
+    background-color: white;
+    color: black;
   }
 `;
+
 const LogoDiv = styled.div`
-  margin-left: 20px;
   position: absolute;
   display: flex;
   align-items: center;
@@ -27,6 +34,8 @@ const LogoDiv = styled.div`
   color: white;
   margin-top: auto;
   margin-bottom: auto;
+  padding-left: 50px;
+  z-index: 5000;
 `;
 
 const NavItem = styled.div`
@@ -34,10 +43,8 @@ const NavItem = styled.div`
   font-weight: bold;
   font-size: 20px;
   color: white;
-  padding: 5px 10px;
+  padding: 10px;
   &:hover {
-    background-color: white;
-    color: black;
     cursor: pointer;
   }
   @media screen and (max-width: 800px) {
@@ -63,18 +70,19 @@ const MobileIcon = styled.div`
 
 const BackDrop = styled.div`
   width: 100%;
+  height: 100vh;
   position: fixed;
-  height: 50px;
   display: flex;
   gap: 20px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.5);
-  left: 0;
+  left: ${(props) => (!props.click ? "-100%" : "0")};
   top: 0;
   color: white;
+  background-color: black;
   z-index: 30;
+  transition: all 0.5s ease-in;
 `;
 
 const ResNavItem = styled.div`
@@ -87,10 +95,14 @@ const ResNavItem = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  &:hover {
+    background-color: #eee;
+    color: black;
+    cursor: pointer;
+  }
 `;
 
 const Navbar = (props) => {
-  console.log(props.click);
   const scrollTo = (place) => {
     scroller.scrollTo(place, {
       duration: 800,
@@ -98,33 +110,34 @@ const Navbar = (props) => {
       smooth: "easeOut",
     });
   };
+  const scrollToMobile = (place) => {
+    props.setclick(!props.click);
+    scroller.scrollTo(place, {
+      duration: 800,
+      delay: 0,
+      smooth: "easeOut",
+    });
+  };
   return (
-    <NavbarContainer>
+    <NavbarContainer id="navbar" position={props.position}>
       <LogoDiv>
         <GiInfinity />
       </LogoDiv>
       <MobileIcon onClick={() => props.setclick(!props.click)}>
         {props.click ? <FaTimes /> : <FaBars />}
       </MobileIcon>
-      {props.click ? (
-        <BackDrop>
-          <a href="#about">
-            <ResNavItem>Home</ResNavItem>
-          </a>
-          <ResNavItem>About</ResNavItem>
-          <ResNavItem>ContactUs</ResNavItem>
-        </BackDrop>
-      ) : null}
-      {/* <Link
-        activeClass="active"
-        to="home"
-        spy={true}
-        smooth={true}
-        duration={500}
-      > */}
-      <NavItem onClick={() => scrollTo("home")}>Home</NavItem>
-      <NavItem onClick={() => scrollTo("games")}>Games</NavItem>
-      <NavItem onClick={() => scrollTo("about")}>
+      <BackDrop click={props.click}>
+        <ResNavItem onClick={() => scrollToMobile("home")}>Home</ResNavItem>
+        <ResNavItem onClick={() => scrollToMobile("games")}>Games</ResNavItem>
+        <ResNavItem onClick={() => scrollToMobile("about")}>About</ResNavItem>
+      </BackDrop>
+      <NavItem className="navbar-items active" onClick={() => scrollTo("home")}>
+        Home
+      </NavItem>
+      <NavItem onClick={() => scrollTo("games")} className="gamesbutton">
+        Games
+      </NavItem>
+      <NavItem className="navbar-items" onClick={() => scrollTo("about")}>
         About
       </NavItem>
     </NavbarContainer>
