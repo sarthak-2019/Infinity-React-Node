@@ -69,7 +69,6 @@ const Result = styled.div`
   width: 80%;
   margin: auto;
   min-height: 100vh;
-  border: 2px solid white;
 `;
 const SearchDiv = styled.div`
   display: flex;

@@ -45,7 +45,16 @@ const SearchDiv = styled.div`
   justify-content: center;
   align-items: center;
 `;
-
+const H1 = styled.h1`
+  text-align: center;
+  margin-bottom: 25px;
+  margin-top: 25px;
+  font-weight: 700;
+  font-size: 3em;
+  @media screen and (max-width: 800px) {
+    font-size: 1.5em;
+  }
+`;
 export const Search = styled.button`
   background-color: black;
   position: relative;
@@ -114,16 +123,7 @@ const Game = () => {
 
   return (
     <GameContainer name="games" id="games">
-      <h1
-        style={{
-          textAlign: "center",
-          marginBottom: "25px",
-          fontWeight: "700",
-          fontSize: "3em",
-        }}
-      >
-        Top Trending Games.
-      </h1>
+      <H1>Top Trending Games.</H1>
       <CardDiv>
         {GameData
           ? GameData.slice(0, 21).map((game) => {

@@ -27,7 +27,22 @@ const HomePage = () => {
       };
     }
   }, []);
-
+  useEffect(() => {
+    const options = {
+      rootMargin: "-150px 0px 0px 0px",
+    };
+    const home = document.getElementById("home");
+    const observer1 = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          document.getElementById("navbar").classList.add("animate");
+        } else {
+          document.getElementById("navbar").classList.remove("animate");
+        }
+      });
+    }, options);
+    observer1.observe(home);
+  }, []);
   return (
     <React.Fragment>
       <VideoContainer name="home" id="home">
