@@ -9,13 +9,12 @@ const NavbarContainer = styled.div`
   width: 100%;
   display: flex;
   position: fixed;
-  height: 55px;
+  height: 65px;
   justify-content: flex-end;
   align-items: center;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding: 25px 0;
   z-index: 5000;
-  #About {
+  .nav-about {
     margin-right: 50px;
   }
   transition: all 0.2s ease;
@@ -137,7 +136,7 @@ const Navbar = (props) => {
       <NavItem onClick={() => scrollTo("games")} className="gamesbutton">
         Games
       </NavItem>
-      <NavItem className="navbar-items" onClick={() => scrollTo("about")}>
+      <NavItem className="nav-about" onClick={() => scrollTo("about")}>
         About
       </NavItem>
     </NavbarContainer>

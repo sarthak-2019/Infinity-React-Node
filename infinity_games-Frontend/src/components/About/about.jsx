@@ -87,7 +87,7 @@ const Head = styled.div`
 const About = () => {
   React.useEffect(() => {
     Aos.init({ duration: 1000 });
-  });
+  }, []);
 
   return (
     <Container img={Image} name="about">
