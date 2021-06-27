@@ -23,11 +23,11 @@ e)Puzzle<br>
 ### Setup Frontend on Local System
 1-Inside infinity_games-Frontend folder run-><br>
 `npm install`<br>
-2-To start backend server-><br>
+2-To start frontend server-><br>
 `npm start`<br>
 ### About Frontend
 ### About Backend 
-<br>Built on Express and Nodejs<br>
+Built on Express and Nodejs<br>
 <br>Database-> MongoDb [We have provided our config.env file containing connection string for connecting to the database<br>
 <br>RestAPIs-> We have two API's for getting data from database<br>
 <br>To get list of all the games<br>
