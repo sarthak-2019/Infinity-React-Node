@@ -5,6 +5,7 @@
 /backend/node_modules
 /backend/config.env
 /infinity_games-Frontend/node_modules
+/infinity_games-Backend/node_modules
 /.pnp
 .pnp.js
 

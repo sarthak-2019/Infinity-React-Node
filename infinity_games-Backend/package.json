@@ -1,0 +1,26 @@
+{
+  "name": "webocode_backend",
+  "version": "1.0.0",
+  "description": "Backend For WebOCode",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js",
+    "start:dev": "nodemon server.js"
+  },
+  "author": "Sarthak Shukla",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.10",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-mongo-sanitize": "^2.1.0",
+    "helmet": "^4.6.0",
+    "mongoose": "^5.12.14",
+    "morgan": "^1.10.0",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6",
+    "xss-clean": "^0.1.1"
+  }
+}
