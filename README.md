@@ -34,3 +34,9 @@ Built on Express and Nodejs<br>
 1-`https://code-to-thrive-webocode.herokuapp.com/games/allgames`<br>
 To get list of all the games as per Game Category<br>
 2-`https://code-to-thrive-webocode.herokuapp.com/games/allgames/${category}`<br>
+
+##References 
+
+#### https://code-to-thrive-infinity.netlify.app/GamePage
+#### React,Javascript,HTML,CSS.
+#### React-Scroll,Aos.
