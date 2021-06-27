@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Searchbar from "../Searchbar/searchbar";
 import Image from "../../assets/images/game.jpg";
@@ -9,9 +10,14 @@ const Heading = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
+  align-content: center;
   font-size: 45px;
   font-weight: 700;
   color: white;
+  @media screen and (max-width: 800px) {
+    font-size: 30px;
+    text-align: center;
+  }
 `;
 
 const Background = styled.div`
@@ -31,6 +37,11 @@ const Options = styled.div`
   width: 50%;
   margin: 20px auto;
   gap: 15px;
+  @media screen and (max-width: 800px) {
+    font-size: 10px;
+    flex-wrap: wrap;
+    width: 100%;
+  }
   input[type="checkbox"] {
     display: none;
   }
@@ -40,8 +51,8 @@ const Options = styled.div`
     padding: 10px;
     border-radius: 5px;
     &:hover {
-      background-color: #e1e1e1;
-      color: black;
+      background-color: black;
+      color: white;
       cursor: pointer;
     }
   }
@@ -60,12 +71,70 @@ const Result = styled.div`
   min-height: 100vh;
   border: 2px solid white;
 `;
+const SearchDiv = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+`;
+export const Search = styled.button`
+  background-color: white;
+  position: relative;
+  text-align: center;
+  width: 150px;
+  box-sizing: border-box;
+  height: 50px;
+  font-size: 16px;
+  color: black;
+  border: none;
+  padding: 10px;
 
-const Cards = styled.div``;
+  animation-delay: 0.3s;
+  margin-bottom: 40px;
+  &::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: white;
+    bottom: 0;
+    left: 0;
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: white;
+    top: 0;
+    right: 0;
+  }
+  &:hover {
+    cursor: pointer;
+    color: white;
+    background-color: black;
+    box-shadow: 2px 2px 2px black;
+  }
+
+  &:hover::after,
+  &:hover::before {
+    width: 100%;
+    transition: 0.5s ease-in;
+  }
+
+  @keyframes btnAnimation {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0%);
+      visibility: visible;
+    }
+  }
+`;
 
 const GamePage = () => {
-  const { origData, setGameData, setCategory, GameData } =
-    useContext(AuthContext);
+  const { origData, setGameData, setCategory } = useContext(AuthContext);
   const [action1, setAction] = useState(false);
   const [adventure1, setAdventure] = useState(false);
   const [arcade1, setArcade] = useState(false);
@@ -85,7 +154,7 @@ const GamePage = () => {
     }
     if (temp.adventure) {
       flag = 1;
-      for (var i = 0; i < origData.length; i++) {
+      for (i = 0; i < origData.length; i++) {
         if (origData[i].category === "Adventure") {
           filterGamesByCategory.push(origData[i]);
         }
@@ -93,7 +162,7 @@ const GamePage = () => {
     }
     if (temp.arcade) {
       flag = 1;
-      for (var i = 0; i < origData.length; i++) {
+      for (i = 0; i < origData.length; i++) {
         if (origData[i].category === "Arcade") {
           filterGamesByCategory.push(origData[i]);
         }
@@ -101,7 +170,7 @@ const GamePage = () => {
     }
     if (temp.puzzle) {
       flag = 1;
-      for (var i = 0; i < origData.length; i++) {
+      for (i = 0; i < origData.length; i++) {
         if (origData[i].category === "Puzzle") {
           filterGamesByCategory.push(origData[i]);
         }
@@ -109,7 +178,7 @@ const GamePage = () => {
     }
     if (temp.shooting) {
       flag = 1;
-      for (var i = 0; i < origData.length; i++) {
+      for (i = 0; i < origData.length; i++) {
         if (origData[i].category === "Shooting") {
           filterGamesByCategory.push(origData[i]);
         }
@@ -246,6 +315,11 @@ const GamePage = () => {
       <Background>
         <Backdrop>
           <Heading>THE INFINITE ENCOUNTERS</Heading>
+          <SearchDiv>
+            <Link to="/">
+              <Search>Back to Home</Search>
+            </Link>
+          </SearchDiv>
           <Searchbar />
           <Options>
             <input type="checkbox" id="action" onClick={actionChangeHandler} />

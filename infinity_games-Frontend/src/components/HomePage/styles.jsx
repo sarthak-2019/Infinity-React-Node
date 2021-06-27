@@ -9,6 +9,12 @@ export const VideoContainer = styled.div`
     z-index: -1;
     object-fit: fill;
   }
+  @media screen and (max-width: 800px) {
+    video {
+      height: 50vh;
+    }
+    height: 50vh;
+  }
   .typed-cursor {
     opacity: 1;
     animation: typedjsBlink 0.7s infinite;
@@ -56,6 +62,9 @@ export const BackDrop = styled.div`
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 20;
+  @media screen and (max-width: 800px) {
+    height: 50vh;
+  }
 `;
 
 export const Heading = styled.div`
@@ -72,5 +81,7 @@ export const Heading = styled.div`
   @media screen and (max-width: 800px) {
     font-size: 30px;
     text-align: center;
+    left: 50%;
+    top: 30%;
   }
 `;

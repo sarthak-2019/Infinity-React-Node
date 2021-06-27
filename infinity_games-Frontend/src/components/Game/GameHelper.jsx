@@ -1,24 +1,14 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import AuthContext from "../../context/AuthContext";
 import Cards from "../Cards/Cards";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import Aos from "aos";
-import InfiniteScroll from "react-infinite-scroll-component";
 const GameContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
   margin-top: 50px;
-`;
-
-const Heading = styled.div`
-  margin: 50px auto;
-  font-size: 35px;
-  line-height: 37.5px;
-  font-weight: 700;
-  font-family: "Montserrat", "Helvetica", "Arial", sans-serif;
 `;
 
 const CardDiv = styled.div`
@@ -45,13 +35,6 @@ const CardDiv = styled.div`
       text-decoration: none;
     }
   }
-`;
-
-const SearchDiv = styled.div`
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
 `;
 
 export const Search = styled.button`
@@ -116,41 +99,11 @@ export const Search = styled.button`
 
 const Game = () => {
   const { GameData } = useContext(AuthContext);
-  const count = 30;
-  const [start, setStart] = useState(0);
-  const [data, setData] = useState([]);
-  const [stop, setStop] = useState(true);
-  const fetchData = () => {
-    console.log(GameData);
-    const left = start;
-    if (left >= GameData.length) {
-      setStop(false);
-      const temp = [];
-      for (var i = 0; i < GameData.length; i++) {
-        temp.push(GameData[i]);
-      }
-      setData(temp);
-      return;
-    }
-    const temp = [];
-    const lim = Math.min(left + count, GameData.length);
-    for (var i = 0; i < lim; i++) {
-      temp.push(GameData[i]);
-    }
-    setData(temp);
-    setStart(left + count);
-  };
   useEffect(() => {
     Aos.init({ duration: 1000 });
   }, []);
 
   return (
-    // <InfiniteScroll
-    //   dataLength={data.length}
-    //   next={fetchData}
-    //   hasMore={stop}
-    //   loader={<h4>Loading...</h4>}
-    // >
     <GameContainer name="games" id="games">
       <CardDiv>
         {GameData

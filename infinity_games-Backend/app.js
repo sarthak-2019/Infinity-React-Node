@@ -1,5 +1,5 @@
 const express = require("express");
-// const cors = require('cors');
+const cors = require("cors");
 const morgan = require("morgan");
 const globalErrorHandler = require("./controller/errorController");
 // const helmet = require("helmet");
@@ -13,14 +13,12 @@ const app = express();
 app.use(morgan("dev"));
 app.use(express.json());
 
-// app.use(
-//   cors({
-//     origin: [
-//       'http://localhost:3000',
-//     ],
-//     credentials: true,
-//   })
-// );
+app.use(
+  cors({
+    origin: ["http://localhost:3000", "http://localhost:63000"],
+    credentials: true,
+  })
+);
 
 // app.use(mongoSanitize());
 // app.use(xss());

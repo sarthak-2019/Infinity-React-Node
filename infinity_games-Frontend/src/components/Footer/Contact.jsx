@@ -1,9 +1,9 @@
 import React from "react";
 import "../Footer/Contact.css";
-import { Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 const Contact = () => {
   return (
-    <>
+    <React.Fragment>
       <div class="container">
         <Link to="/" style={{ textDecoration: "none" }}>
           <div className="txt">
@@ -32,7 +32,7 @@ const Contact = () => {
           </div>
         </div>
       </div>
-    </>
+    </React.Fragment>
   );
 };
 

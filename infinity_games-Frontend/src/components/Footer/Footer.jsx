@@ -1,7 +1,7 @@
 import React from "react";
 import "./Footer.css";
 import GitHubIcon from "@material-ui/icons/GitHub";
-import { Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (

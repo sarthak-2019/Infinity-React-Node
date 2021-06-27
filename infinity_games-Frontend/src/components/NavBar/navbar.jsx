@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { GiInfinity } from "react-icons/gi";
 import { FaTimes } from "react-icons/fa";
@@ -117,6 +117,7 @@ const Navbar = (props) => {
       smooth: "easeOut",
     });
   };
+
   return (
     <NavbarContainer id="navbar" position={props.position}>
       <LogoDiv>
@@ -130,7 +131,7 @@ const Navbar = (props) => {
         <ResNavItem onClick={() => scrollToMobile("games")}>Games</ResNavItem>
         <ResNavItem onClick={() => scrollToMobile("about")}>About</ResNavItem>
       </BackDrop>
-      <NavItem className="navbar-items active" onClick={() => scrollTo("home")}>
+      <NavItem className="navbar-items" onClick={() => scrollTo("home")}>
         Home
       </NavItem>
       <NavItem onClick={() => scrollTo("games")} className="gamesbutton">

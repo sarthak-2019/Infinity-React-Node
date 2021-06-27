@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import Footer from "./components/Footer/Footer";
 import Aos from "aos";
 import { Route } from "react-router-dom";

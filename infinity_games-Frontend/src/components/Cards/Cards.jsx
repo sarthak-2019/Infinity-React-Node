@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import { AiOutlineDoubleRight } from "react-icons/ai";
 import Aos from "aos";
@@ -56,7 +56,7 @@ const Cards = (props) => {
   }, []);
   return (
     <Card className="fade-up">
-      <img src={props.image} width="100px" />
+      <img src={props.image} width="100px" alt="Game Images" />
       <CardText>
         <Title>
           {props.title.substr(0, props.title.length - 1).slice(0, 15)}

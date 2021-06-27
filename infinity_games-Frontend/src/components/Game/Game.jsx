@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import AuthContext from "../../context/AuthContext";
 import Cards from "../Cards/Cards";
 import styled from "styled-components";
@@ -11,14 +11,6 @@ const GameContainer = styled.div`
   justify-content: flex-start;
   flex-direction: column;
   margin-top: 50px;
-`;
-
-const Heading = styled.div`
-  margin: 50px auto;
-  font-size: 35px;
-  line-height: 37.5px;
-  font-weight: 700;
-  font-family: "Montserrat", "Helvetica", "Arial", sans-serif;
 `;
 
 const CardDiv = styled.div`
@@ -55,14 +47,14 @@ const SearchDiv = styled.div`
 `;
 
 export const Search = styled.button`
-  background-color: #eee;
+  background-color: black;
   position: relative;
   text-align: center;
   width: 150px;
   box-sizing: border-box;
   height: 50px;
   font-size: 16px;
-  color: black;
+  color: white;
   border: none;
   padding: 10px;
   visibility: hidden;
@@ -77,7 +69,7 @@ export const Search = styled.button`
     position: absolute;
     width: 0;
     height: 2px;
-    background-color: white;
+    background-color: black;
     bottom: 0;
     left: 0;
   }
@@ -86,14 +78,14 @@ export const Search = styled.button`
     position: absolute;
     width: 0;
     height: 2px;
-    background-color: white;
+    background-color: black;
     top: 0;
     right: 0;
   }
   &:hover {
     cursor: pointer;
-    color: white;
-    background-color: black;
+    color: black;
+    background-color: white;
     box-shadow: 2px 2px 2px black;
   }
 
@@ -122,6 +114,16 @@ const Game = () => {
 
   return (
     <GameContainer name="games" id="games">
+      <h1
+        style={{
+          textAlign: "center",
+          marginBottom: "25px",
+          fontWeight: "700",
+          fontSize: "3em",
+        }}
+      >
+        Top Trending Games.
+      </h1>
       <CardDiv>
         {GameData
           ? GameData.slice(0, 21).map((game) => {

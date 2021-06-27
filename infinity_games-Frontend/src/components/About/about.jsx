@@ -2,7 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import Aos from "aos";
 import { GiInfinity } from "react-icons/gi";
-import Image from "../../assets/images/key1.jpg";
+import Image from "../../assets/images/18-01.svg";
+import "./about.css";
 
 const Container = styled.div`
   width: 100%;
@@ -10,6 +11,7 @@ const Container = styled.div`
   position: relative;
   background-image: url(${({ img }) => img});
   background-size: cover;
+  background-position: center;
 `;
 
 const Backdrop = styled.div`
@@ -23,7 +25,7 @@ const Backdrop = styled.div`
   align-items: center;
   flex-direction: column;
   gap: 60px;
-  background: rgba(0, 0, 0, 0.5);
+  /* background: rgba(0, 0, 0, 0.5); */
 `;
 
 const Div = styled.div`
@@ -104,31 +106,53 @@ const About = () => {
         </Infinity>
 
         <Div data-aos="fade-up">
-          <div>
-            <span>&#8220;</span>
-            We found out that searching games by going to every individual
-            website sucks.
-            <span>&#8221;</span>
+          <div className="container1">
+            <div className="c1h">
+              <h1>Search engine </h1>
+            </div>
+            <div className="c1p">
+              <h2>
+                We found out that searching games by going to every individual
+                website sucks.
+              </h2>
+            </div>
           </div>
         </Div>
         <Div data-aos="fade-up">
-          <div>
-            <span>&#8220;</span>
-            So, We created a Place Called Infinity where you can Search Most of
-            the games available on the Internet.
-            <span>&#8221;</span>
+          <div className="container1">
+            <div className="c1h">
+              <h1>Infinity</h1>
+            </div>
+            <div className="c1p">
+              <h2>
+                So, We created a Place Called Infinity where you can Search Most
+                of the games available on the Internet.
+              </h2>
+            </div>
           </div>
         </Div>
         <Div data-aos="fade-up">
-          <div>
-            <span>&#8220;</span>An interactive way to search online games.
-            <span>&#8221;</span>
+          <div className="container1">
+            <div className="c1h">
+              <h1>Search. Sort. Play!</h1>
+            </div>
+            <div className="c1p">
+              <h2>
+                An interactive way to search online games based on your keywords
+              </h2>
+            </div>
           </div>
         </Div>
         <Div data-aos="fade-up">
-          <div>
-            <span>&#8220;</span>Search From many different categories.
-            <span>&#8221;</span>
+          <div className="container1">
+            <div className="c1h">
+              <h1>Find It Fast</h1>
+            </div>
+            <div className="c1p">
+              <h2>
+                Search From many different categories quickly and efficiently.
+              </h2>
+            </div>
           </div>
         </Div>
         <Div data-aos="fade-up">
