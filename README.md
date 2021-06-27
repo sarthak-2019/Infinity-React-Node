@@ -42,7 +42,6 @@ To get list of all the games as per Game Category<br>
 
 ## References 
 
-#### https://code-to-thrive-infinity.netlify.app/GamePage
 #### React,Javascript,HTML,CSS.
 #### React-Scroll,Aos.
 
