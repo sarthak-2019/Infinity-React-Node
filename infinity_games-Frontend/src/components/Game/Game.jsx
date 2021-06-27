@@ -10,7 +10,7 @@ const GameContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
-  margin-top: 50px;;
+  margin-top: 50px; ;
 `;
 
 const Heading = styled.div`
@@ -120,7 +120,6 @@ const Game = () => {
   }, []);
   const { GameData } = useContext(AuthContext);
 
-  console.log(GameData);
   return (
     <GameContainer name="games" id="games">
       {/* <Searchbar /> */}

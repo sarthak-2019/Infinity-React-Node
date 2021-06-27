@@ -69,7 +69,7 @@ const Select = styled.select`
 const Searchbar = () => {
   const { origData, GameData, setGameData, category, input, setInput } =
     useContext(AuthContext);
-  async function inputHandler(e) {
+  function inputHandler(e) {
     setInput(e.target.value);
     const searchedWord = e.target.value;
     if (e.target.value === "") {
@@ -120,6 +120,8 @@ const Searchbar = () => {
         setGameData(origData);
       }
     } else {
+      console.log("kgm");
+      console.log(GameData);
       const filterGamesByCategory = [];
       var flag = 0;
       if (category.action) {
@@ -160,6 +162,11 @@ const Searchbar = () => {
           if (origData[i].category === "Shooting") {
             filterGamesByCategory.push(origData[i]);
           }
+        }
+      }
+      if (!flag) {
+        for (var i = 0; i < origData.length; i++) {
+          filterGamesByCategory.push(origData[i]);
         }
       }
       const newFilter = filterGamesByCategory.filter((value) => {

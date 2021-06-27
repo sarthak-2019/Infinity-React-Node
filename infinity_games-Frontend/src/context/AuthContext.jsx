@@ -29,9 +29,9 @@ function AuthContextProvider(props) {
     getGames();
   }, []);
 
-  useEffect(() => {
-    console.log(GameData);
-  }, [GameData]);
+  // useEffect(() => {
+  //   console.log(GameData);
+  // }, [GameData]);
 
   return (
     <AuthContext.Provider
