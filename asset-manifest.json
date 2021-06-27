@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/Code_To_Thrive-WebOCode/static/css/main.2dd81b01.chunk.css",
+    "main.js": "/Code_To_Thrive-WebOCode/static/js/main.1b9a6f69.chunk.js",
+    "main.js.map": "/Code_To_Thrive-WebOCode/static/js/main.1b9a6f69.chunk.js.map",
+    "runtime-main.js": "/Code_To_Thrive-WebOCode/static/js/runtime-main.214f6fe1.js",
+    "runtime-main.js.map": "/Code_To_Thrive-WebOCode/static/js/runtime-main.214f6fe1.js.map",
+    "static/css/2.7fc9bc2b.chunk.css": "/Code_To_Thrive-WebOCode/static/css/2.7fc9bc2b.chunk.css",
+    "static/js/2.956fa847.chunk.js": "/Code_To_Thrive-WebOCode/static/js/2.956fa847.chunk.js",
+    "static/js/2.956fa847.chunk.js.map": "/Code_To_Thrive-WebOCode/static/js/2.956fa847.chunk.js.map",
+    "index.html": "/Code_To_Thrive-WebOCode/index.html",
+    "static/css/2.7fc9bc2b.chunk.css.map": "/Code_To_Thrive-WebOCode/static/css/2.7fc9bc2b.chunk.css.map",
+    "static/css/main.2dd81b01.chunk.css.map": "/Code_To_Thrive-WebOCode/static/css/main.2dd81b01.chunk.css.map",
+    "static/js/2.956fa847.chunk.js.LICENSE.txt": "/Code_To_Thrive-WebOCode/static/js/2.956fa847.chunk.js.LICENSE.txt",
+    "static/media/18-01.1d818a8e.svg": "/Code_To_Thrive-WebOCode/static/media/18-01.1d818a8e.svg",
+    "static/media/Contact.css": "/Code_To_Thrive-WebOCode/static/media/25notxt-01.51673695.jpg",
+    "static/media/game.0c10c1c2.mp4": "/Code_To_Thrive-WebOCode/static/media/game.0c10c1c2.mp4",
+    "static/media/game.7d3a8646.jpg": "/Code_To_Thrive-WebOCode/static/media/game.7d3a8646.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.214f6fe1.js",
+    "static/css/2.7fc9bc2b.chunk.css",
+    "static/js/2.956fa847.chunk.js",
+    "static/css/main.2dd81b01.chunk.css",
+    "static/js/main.1b9a6f69.chunk.js"
+  ]
+}
