@@ -11,6 +11,7 @@ const Card = styled.div`
   justify-content: flex-start;
   align-items: center;
   background-color: #eee;
+  border-radius: 5px;
   transition: all 0.3s ease;
   &:hover {
     cursor: pointer;
@@ -62,6 +63,7 @@ const Cards = (props) => {
           {props.title.length > 15 ? "..." : null}
         </Title>
         <Category>{props.category}</Category>
+        <Category>{props.website}</Category>
       </CardText>
       <Arrow />
     </Card>

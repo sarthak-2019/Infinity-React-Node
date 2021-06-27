@@ -1,16 +1,16 @@
 import React, { useState, useEffect, useContext } from "react";
 import AuthContext from "../../context/AuthContext";
-import Cards from "./Cards";
+import Cards from "../Cards/Cards";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Aos from "aos";
 
 const GameContainer = styled.div`
   width: 100%;
-  /* height: 100vh; */
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
+  margin-top: 50px;;
 `;
 
 const Heading = styled.div`
@@ -124,7 +124,7 @@ const Game = () => {
   return (
     <GameContainer name="games" id="games">
       {/* <Searchbar /> */}
-      <Heading data-aos="fade-bottom">Top Trending Games</Heading>
+      {/* <Heading data-aos="fade-bottom">Top Trending Games</Heading> */}
       <CardDiv>
         {GameData
           ? GameData.slice(0, 21).map((game) => {

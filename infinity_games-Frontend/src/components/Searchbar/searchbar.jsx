@@ -4,24 +4,21 @@ import CloseOutlinedIcon from "@material-ui/icons/CloseOutlined";
 import styled from "styled-components";
 import AuthContext from "../../context/AuthContext";
 import axios from "axios";
-const MainContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
 
 const Container = styled.div`
   display: flex;
   position: relative;
   justify-content: flex-start;
   height: 60px;
+  background-color: #eee;
   align-items: center;
   margin-top: 100px;
-  border: 2px solid black;
-  width: 70%;
+  border-radius:5px;
+  width: 50%;
   margin: 0 auto;
   margin-top: 50px;
   .icon {
-    font-size: 35px;
+    font-size: 50px;
   }
 `;
 
@@ -31,17 +28,13 @@ const Input = styled.input`
   outline: none;
   border: none;
   flex-grow: 1;
+  background-color: #eee;
 `;
 
 const Logo = styled(SearchOutlinedIcon)`
   padding: 10px;
 `;
 
-const ResultContainer = styled.div`
-  display: flex;
-  margin: auto;
-  width: 80%;
-`;
 
 const Result = styled.div`
   padding-left: 55px;
@@ -121,7 +114,6 @@ const Searchbar = () => {
   }
   return (
     <React.Fragment>
-      <MainContainer>
         <Container>
           <Logo className="icon" />
           <Input
@@ -129,16 +121,7 @@ const Searchbar = () => {
             onChange={(e) => inputHandler(e)}
             placeholder="Search your Game"
           />
-          <Select value={category} onChange={(e) => categoryHandler(e)}>
-            <option value="All">All</option>
-            <option value="Arcade">Arcade</option>
-            <option value="Adventure">Adventure</option>
-            <option value="Action">Action</option>
-            <option value="Puzzle">Puzzle</option>
-            <option value="Shooting">Shooting</option>
-          </Select>
         </Container>
-      </MainContainer>
     </React.Fragment>
   );
 };

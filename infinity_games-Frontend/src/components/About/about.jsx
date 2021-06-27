@@ -2,13 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import Aos from "aos";
 import { GiInfinity } from "react-icons/gi";
-import Image from "../../assets/images/keyboard.jpg";
+import Image from "../../assets/images/key1.jpg";
 
 const Container = styled.div`
   width: 100%;
   height: 150vh;
   position: relative;
   background-image: url(${({ img }) => img});
+  background-size: cover;
 `;
 
 const Backdrop = styled.div`
@@ -53,8 +54,8 @@ const Infinity = styled.div`
   margin-top: 40px;
   gap: 2px;
   hr {
-    display: none;
-    width: 0;
+    width: 100%;
+    color: white;
     animation: anim 1s ease-in forwards;
     @keyframes anim {
       from {
@@ -94,12 +95,12 @@ const About = () => {
       <Backdrop id="About">
         <Infinity>
           <Head data-aos="fade-up">
-            <h2>Infinity </h2>
+            <h2>About Us </h2>
             <span>
-              <GiInfinity />
+              (<GiInfinity />)
             </span>
           </Head>
-          <hr />
+          <hr data-aos="fade-up" />
         </Infinity>
 
         <Div data-aos="fade-up">
