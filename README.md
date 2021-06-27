@@ -34,6 +34,5 @@
 <br>RestAPIs-> We have two API's for getting data from database<br>
 <br>To get list of all the games<br>
 1-`https://code-to-thrive-webocode.herokuapp.com/games/allgames`<br>
-To get list of all the games as per category<br>
 To get list of all the games as per Game Category<br>
 2-`https://code-to-thrive-webocode.herokuapp.com/games/allgames/${category}`<br>
