@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import SearchOutlinedIcon from "@material-ui/icons/SearchOutlined";
 import CloseOutlinedIcon from "@material-ui/icons/CloseOutlined";
 import styled from "styled-components";
-import AuthContext from "./../../../context/AuthContext";
+import AuthContext from "../../context/AuthContext";
 import axios from "axios";
 const MainContainer = styled.div`
   display: flex;
@@ -17,7 +17,7 @@ const Container = styled.div`
   align-items: center;
   margin-top: 100px;
   border: 2px solid black;
-  width: 80%;
+  width: 70%;
   margin: 0 auto;
   margin-top: 50px;
   .icon {
@@ -98,26 +98,26 @@ const Searchbar = () => {
   async function inputHandler(e) {
     setInput(e.target.value);
     const searchedWord = e.target.value;
-    if (e.target.value === "") {
-      if (category === "All") {
-        const gameList = await axios.get(
-          "https://code-to-thrive-webocode.herokuapp.com/games/allgames"
-        );
-        const temp = gameList.data.data.games;
-        setGameData(temp);
-      } else {
-        const gameList = await axios.get(
-          `https://code-to-thrive-webocode.herokuapp.com/games/allgames/${category}`
-        );
-        const temp = gameList.data.data.games;
-        setGameData(temp);
-      }
-    } else {
-      const newFilter = gameData.filter((value) => {
-        return value.name.toLowerCase().includes(searchedWord.toLowerCase());
-      });
-      setGameData(newFilter);
-    }
+    // if (e.target.value === "") {
+    //   if (category === "All") {
+    //     const gameList = await axios.get(
+    //       "https://code-to-thrive-webocode.herokuapp.com/games/allgames"
+    //     );
+    //     const temp = gameList.data.data.games;
+    //     setGameData(temp);
+    //   } else {
+    //     const gameList = await axios.get(
+    //       `https://code-to-thrive-webocode.herokuapp.com/games/allgames/${category}`
+    //     );
+    //     const temp = gameList.data.data.games;
+    //     setGameData(temp);
+    //   }
+    // } else {
+    //   const newFilter = gameData.filter((value) => {
+    //     return value.name.toLowerCase().includes(searchedWord.toLowerCase());
+    //   });
+    //   setGameData(newFilter);
+    // }
   }
   return (
     <React.Fragment>

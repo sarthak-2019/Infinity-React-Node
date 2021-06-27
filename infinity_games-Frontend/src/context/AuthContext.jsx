@@ -5,7 +5,7 @@ const AuthContext = createContext();
 
 function AuthContextProvider(props) {
   const [category, setCategory] = useState("All");
-  const [gameData, setGameData] = useState([]);
+  const [GameData, setGameData] = useState([]);
   const [input, setInput] = useState("");
 
   async function getGames() {
@@ -20,13 +20,13 @@ function AuthContextProvider(props) {
   }, []);
 
   useEffect(() => {
-    console.log(gameData);
-  }, [gameData]);
+    console.log(GameData);
+  }, [GameData]);
 
   return (
     <AuthContext.Provider
       value={{
-        gameData,
+        GameData,
         setGameData,
         category,
         setCategory,

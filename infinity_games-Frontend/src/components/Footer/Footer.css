@@ -1,0 +1,50 @@
+* {
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+.footer {
+  margin: 0px 0px 10px 0px;
+  position: flex;
+  left: 0;
+  bottom: 0;
+  height: 100px;
+  width: 100%;
+  background-color: white;
+  border-radius: 20px;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 2%;
+  padding-right: 2%;
+  box-shadow: black;
+  box-shadow: 1px 16px 31px -6px rgba(0, 0, 0, 0.71);
+  -webkit-box-shadow: 1px 16px 31px -6px rgba(0, 0, 0, 0.71);
+  -moz-box-shadow: 1px 16px 31px -6px rgba(0, 0, 0, 0.71);
+}
+.contact {
+  margin-right: 1%;
+}
+
+.contact button {
+  padding: 20% 17%;
+
+  border-radius: 20px;
+  border: none;
+  background-color: black;
+  color: white;
+  box-shadow: 1px 16px 31px -6px rgba(0, 0, 0, 0.35);
+  -webkit-box-shadow: 1px 16px 31px -6px rgba(0, 0, 0, 0.35);
+  -moz-box-shadow: 1px 16px 31px -6px rgba(0, 0, 0, 0.35);
+  font-weight: 500;
+}
+
+.contact button h1 {
+  font-weight: 300;
+}
+
+.logo_contianer h1 {
+  color: black;
+  font-weight: 900;
+}
