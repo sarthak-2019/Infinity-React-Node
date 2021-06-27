@@ -4,16 +4,26 @@ import React, { createContext, useEffect, useState } from "react";
 const AuthContext = createContext();
 
 function AuthContextProvider(props) {
-  const [category, setCategory] = useState("All");
+  const [category, setCategory] = useState({
+    action: false,
+    adventure: false,
+    arcade: false,
+    puzzle: false,
+    shooting: false,
+  });
   const [GameData, setGameData] = useState([]);
+  const [origData, setOrigData] = useState([]);
   const [input, setInput] = useState("");
 
   async function getGames() {
-    const gameList = await axios.get(
-      "https://code-to-thrive-webocode.herokuapp.com/games/allgames"
-    );
-    const temp = gameList.data.data.games;
-    setGameData(temp);
+    if (origData.length === 0) {
+      const gameList = await axios.get(
+        "https://code-to-thrive-webocode.herokuapp.com/games/allgames"
+      );
+      const temp = gameList.data.data.games;
+      setOrigData(temp);
+      setGameData(temp);
+    }
   }
   useEffect(() => {
     getGames();
@@ -26,6 +36,7 @@ function AuthContextProvider(props) {
   return (
     <AuthContext.Provider
       value={{
+        origData,
         GameData,
         setGameData,
         category,

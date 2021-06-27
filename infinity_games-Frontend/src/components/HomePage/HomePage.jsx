@@ -39,37 +39,35 @@ const HomePage = () => {
     const options = {
       rootMargin: "-100px 0px 0px 0px",
     };
-    setTimeout(() => {
-      const observer1 = new IntersectionObserver((entries, observer) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) {
-            document.getElementById("navbar").classList.add("animate");
-          } else {
-            document.getElementById("navbar").classList.remove("animate");
-          }
-        });
-      }, options);
+    const observer1 = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          document.getElementById("navbar").classList.add("animate");
+        } else {
+          document.getElementById("navbar").classList.remove("animate");
+        }
+      });
+    }, options);
 
-      const observer2 = new IntersectionObserver((entries, observer) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) {
-            const nav_items = document.getElementsByClassName("navbar-items");
-            for (let i = 0; i < nav_items.length; i++) {
-              console.log(nav_items.item(i));
-              if (nav_items.item(i).classList.contains("active")) {
-                nav_items.item(i).classList.remove("active");
-              }
+    const observer2 = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          const nav_items = document.getElementsByClassName("navbar-items");
+          for (let i = 0; i < nav_items.length; i++) {
+            console.log(nav_items.item(i));
+            if (nav_items.item(i).classList.contains("active")) {
+              nav_items.item(i).classList.remove("active");
             }
-            console.log(entry.target, entry.isIntersecting);
-          } else {
-            console.log(entry.target, entry.isIntersecting);
           }
-        });
-      }, options);
+          console.log(entry.target, entry.isIntersecting);
+        } else {
+          console.log(entry.target, entry.isIntersecting);
+        }
+      });
+    }, options);
 
-      observer1.observe(home);
-      observer2.observe(games);
-    },100000);
+    observer1.observe(home);
+    observer2.observe(games);
   }, []);
 
   return (

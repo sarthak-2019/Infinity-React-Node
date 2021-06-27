@@ -13,7 +13,7 @@ const Container = styled.div`
   background-color: #eee;
   align-items: center;
   margin-top: 100px;
-  border-radius:5px;
+  border-radius: 5px;
   width: 50%;
   margin: 0 auto;
   margin-top: 50px;
@@ -34,7 +34,6 @@ const Input = styled.input`
 const Logo = styled(SearchOutlinedIcon)`
   padding: 10px;
 `;
-
 
 const Result = styled.div`
   padding-left: 55px;
@@ -68,60 +67,117 @@ const Select = styled.select`
 `;
 
 const Searchbar = () => {
-  const { gameData, setGameData, category, setCategory, input, setInput } =
+  const { origData, GameData, setGameData, category, input, setInput } =
     useContext(AuthContext);
-
-  async function categoryHandler(e) {
-    setCategory(e.target.value);
-    if (e.target.value === "All") {
-      const gameList = await axios.get(
-        "https://code-to-thrive-webocode.herokuapp.com/games/allgames"
-      );
-      const temp = gameList.data.data.games;
-      setGameData(temp);
-    } else {
-      const gameList = await axios.get(
-        `https://code-to-thrive-webocode.herokuapp.com/games/allgames/${e.target.value}`
-      );
-      const temp = gameList.data.data.games;
-      setGameData(temp);
-    }
-  }
-
   async function inputHandler(e) {
     setInput(e.target.value);
     const searchedWord = e.target.value;
-    // if (e.target.value === "") {
-    //   if (category === "All") {
-    //     const gameList = await axios.get(
-    //       "https://code-to-thrive-webocode.herokuapp.com/games/allgames"
-    //     );
-    //     const temp = gameList.data.data.games;
-    //     setGameData(temp);
-    //   } else {
-    //     const gameList = await axios.get(
-    //       `https://code-to-thrive-webocode.herokuapp.com/games/allgames/${category}`
-    //     );
-    //     const temp = gameList.data.data.games;
-    //     setGameData(temp);
-    //   }
-    // } else {
-    //   const newFilter = gameData.filter((value) => {
-    //     return value.name.toLowerCase().includes(searchedWord.toLowerCase());
-    //   });
-    //   setGameData(newFilter);
-    // }
+    if (e.target.value === "") {
+      const filterGamesByCategory = [];
+      var flag = 0;
+      if (category.action) {
+        flag = 1;
+        for (var i = 0; i < origData.length; i++) {
+          if (origData[i].category === "Action") {
+            filterGamesByCategory.push(origData[i]);
+          }
+        }
+      }
+      if (category.adventure) {
+        flag = 1;
+        for (var i = 0; i < origData.length; i++) {
+          if (origData[i].category === "Adventure") {
+            filterGamesByCategory.push(origData[i]);
+          }
+        }
+      }
+      if (category.arcade) {
+        flag = 1;
+        for (var i = 0; i < origData.length; i++) {
+          if (origData[i].category === "Arcade") {
+            filterGamesByCategory.push(origData[i]);
+          }
+        }
+      }
+      if (category.puzzle) {
+        flag = 1;
+        for (var i = 0; i < origData.length; i++) {
+          if (origData[i].category === "Puzzle") {
+            filterGamesByCategory.push(origData[i]);
+          }
+        }
+      }
+      if (category.shooting) {
+        flag = 1;
+        for (var i = 0; i < origData.length; i++) {
+          if (origData[i].category === "Shooting") {
+            filterGamesByCategory.push(origData[i]);
+          }
+        }
+      }
+      setGameData(filterGamesByCategory);
+      if (!flag) {
+        setGameData(origData);
+      }
+    } else {
+      const filterGamesByCategory = [];
+      var flag = 0;
+      if (category.action) {
+        flag = 1;
+        for (var i = 0; i < origData.length; i++) {
+          if (origData[i].category === "Action") {
+            filterGamesByCategory.push(origData[i]);
+          }
+        }
+      }
+      if (category.adventure) {
+        flag = 1;
+        for (var i = 0; i < origData.length; i++) {
+          if (origData[i].category === "Adventure") {
+            filterGamesByCategory.push(origData[i]);
+          }
+        }
+      }
+      if (category.arcade) {
+        flag = 1;
+        for (var i = 0; i < origData.length; i++) {
+          if (origData[i].category === "Arcade") {
+            filterGamesByCategory.push(origData[i]);
+          }
+        }
+      }
+      if (category.puzzle) {
+        flag = 1;
+        for (var i = 0; i < origData.length; i++) {
+          if (origData[i].category === "Puzzle") {
+            filterGamesByCategory.push(origData[i]);
+          }
+        }
+      }
+      if (category.shooting) {
+        flag = 1;
+        for (var i = 0; i < origData.length; i++) {
+          if (origData[i].category === "Shooting") {
+            filterGamesByCategory.push(origData[i]);
+          }
+        }
+      }
+      const newFilter = filterGamesByCategory.filter((value) => {
+        return value.name.toLowerCase().includes(searchedWord.toLowerCase());
+      });
+      setGameData(newFilter);
+    }
   }
   return (
     <React.Fragment>
-        <Container>
-          <Logo className="icon" />
-          <Input
-            value={input}
-            onChange={(e) => inputHandler(e)}
-            placeholder="Search your Game"
-          />
-        </Container>
+      <Container>
+        <Logo className="icon" />
+        <Input
+          value={input}
+          onChange={(e) => inputHandler(e)}
+          placeholder="Search your Game"
+        />
+      </Container>
     </React.Fragment>
   );
 };
