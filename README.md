@@ -46,4 +46,4 @@ To get list of all the games as per Game Category<br>
 #### React-Scroll,Aos.
 
 ## Theme 
-Minimalistic.
+Minimalistic, Modern, Aesthetic.
