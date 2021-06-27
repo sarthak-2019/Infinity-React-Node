@@ -13,8 +13,6 @@ const HomePage = () => {
   const el = useRef(null);
   const typed = useRef(null);
 
-  
-
   useEffect(() => {
     const options = {
       strings: ["Welcome To Infinity", "The Game Finder"],
@@ -69,10 +67,9 @@ const HomePage = () => {
         });
       }, options);
 
-      console.log(observer1);
       observer1.observe(home);
       observer2.observe(games);
-    }, 1000);
+    },100000);
   }, []);
 
   return (
