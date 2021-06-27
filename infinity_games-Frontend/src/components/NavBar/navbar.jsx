@@ -12,10 +12,10 @@ const NavbarContainer = styled.div`
   height: 65px;
   justify-content: flex-end;
   align-items: center;
-  padding: 25px 0;
+  padding: 50px;
   z-index: 5000;
   .nav-about {
-    margin-right: 50px;
+    margin-right: 15px;
   }
   transition: all 0.2s ease;
   .active {
@@ -39,13 +39,14 @@ const LogoDiv = styled.div`
 
 const NavItem = styled.div`
   border-radius: 5px;
-  font-weight: bold;
-  font-size: 20px;
+  font-weight: 500;
+  font-size: 1.5em;
   color: white;
   padding: 10px;
   &:hover {
     cursor: pointer;
   }
+  margin: 20px;
   @media screen and (max-width: 800px) {
     display: none;
   }
@@ -105,16 +106,14 @@ const Navbar = (props) => {
   const scrollTo = (place) => {
     scroller.scrollTo(place, {
       duration: 800,
-      delay: 0,
-      smooth: "easeOut",
+      smooth: "linear",
     });
   };
   const scrollToMobile = (place) => {
     props.setclick(!props.click);
     scroller.scrollTo(place, {
-      duration: 800,
-      delay: 0,
-      smooth: "easeOut",
+      duration: 8000,
+      smooth: "linear",
     });
   };
   return (

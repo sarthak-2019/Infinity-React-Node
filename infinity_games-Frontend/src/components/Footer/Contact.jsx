@@ -4,6 +4,9 @@ const Contact = () => {
   return (
     <>
       <div class="container">
+        <div className="txt">
+          <h1>Infinity</h1>
+        </div>
         <div class="contact-box">
           <div class="left">
             <h1>Connect with Us</h1>

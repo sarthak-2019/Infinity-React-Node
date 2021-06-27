@@ -3,10 +3,18 @@
   width: 100%;
   height: 100vh;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  padding: 20px 100px;
-  background-color: rgb(255, 199, 39);
+  padding-right: 120px;
+  /* background-color: rgb(255, 199, 39); */
+  background: url("/src/assets/images/25notxt-01.jpg") no-repeat center;
+  background-size: cover;
+  /* border: 5px solid rgb(0, 255, 55); */
+}
+.txt h1 {
+  transform: rotate(-90deg);
+  color: white;
+  font-weight: 300;
 }
 
 .contact-box {
@@ -26,7 +34,7 @@
   color: white;
   text-align: left;
   padding: 5%;
-  /* background: url("img/bg.jpg") no-repeat center;
+  /* background: url("img/sdsd.png") no-repeat center;
   background-size: cover; */
   height: 100%;
 }
@@ -95,5 +103,37 @@ textarea {
   }
   .left {
     height: 200px;
+  }
+
+  .left p {
+    margin-top: 15px;
+    font-weight: 300;
+    font-size: 0.8em;
+  }
+
+  .left .txtlogo {
+    margin-top: 50px;
+    font-weight: 600;
+    font-size: 0.8em;
+  }
+  .left h1 {
+    font-weight: 800;
+    font-size: 2.5em;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .left p {
+    margin-top: 15px;
+    font-size: 0.6em;
+  }
+
+  .left .txtlogo {
+    margin-top: 20px;
+    font-size: 0.7em;
+  }
+  .left h1 {
+    font-weight: 800;
+    font-size: 2.2em;
   }
 }

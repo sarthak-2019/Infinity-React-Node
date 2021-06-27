@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Aos from "aos";
 import { GiInfinity } from "react-icons/gi";
-import Image from "../../assets/images/key1.jpg";
+import Image from "../../assets/images/18-01.svg";
 
 const Container = styled.div`
   width: 100%;
@@ -10,6 +10,7 @@ const Container = styled.div`
   position: relative;
   background-image: url(${({ img }) => img});
   background-size: cover;
+  background-position: center;
 `;
 
 const Backdrop = styled.div`
@@ -23,7 +24,7 @@ const Backdrop = styled.div`
   align-items: center;
   flex-direction: column;
   gap: 60px;
-  background: rgba(0, 0, 0, 0.5);
+  /* background: rgba(0, 0, 0, 0.5); */
 `;
 
 const Div = styled.div`
