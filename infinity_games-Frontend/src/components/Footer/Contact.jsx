@@ -1,9 +1,15 @@
 import React from "react";
 import "../Footer/Contact.css";
+import { Route, Link } from "react-router-dom";
 const Contact = () => {
   return (
     <>
       <div class="container">
+        <Link to="/" style={{ textDecoration: "none" }}>
+          <div className="txt">
+            <h1>Home</h1>
+          </div>
+        </Link>
         <div class="contact-box">
           <div class="left">
             <h1>Connect with Us</h1>

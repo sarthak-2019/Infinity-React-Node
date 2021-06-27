@@ -10,8 +10,14 @@ const Footer = () => {
         <h1>Infinity</h1>
       </div>
       <div className="media">
-        <a href="https://github.com/" target="_blank">
-          <GitHubIcon style={{ fontSize: 50, color: "black" }} />
+        <a
+          href="https://github.com/sarthak-2019/Code_To_Thrive-WebOCode"
+          target="_blank"
+        >
+          <GitHubIcon
+            className="giticon"
+            style={{ fontSize: 40, color: "white" }}
+          />
         </a>
       </div>
       <Link to="/contact">
@@ -21,7 +27,6 @@ const Footer = () => {
           </button>
         </div>
       </Link>
-      
     </div>
   );
 };

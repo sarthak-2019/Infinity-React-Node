@@ -3,8 +3,7 @@ import styled from "styled-components";
 import Searchbar from "../Searchbar/searchbar";
 import Image from "../../assets/images/game.jpg";
 import AuthContext from "../../context/AuthContext";
-import InfiniteScroll from "react-infinite-scroll-component";
-import Game from "./Game";
+import GameHelper from "./GameHelper";
 const Heading = styled.div`
   padding: 20px 0;
   width: 100%;
@@ -65,11 +64,6 @@ const Result = styled.div`
 const Cards = styled.div``;
 
 const GamePage = () => {
-  const count = 30;
-  const [start, setStart] = useState(0);
-  const [data, setData] = useState([]);
-  const [stop, setStop] = useState(true);
-
   const { origData, setGameData, setCategory, GameData } =
     useContext(AuthContext);
   const [action1, setAction] = useState(false);
@@ -78,26 +72,6 @@ const GamePage = () => {
   const [puzzle1, setPuzzle] = useState(false);
   const [shooting1, setShooting] = useState(false);
 
-  const fetchData = () => {
-    console.log(GameData);
-    const left = start;
-    if (left >= GameData.length) {
-      setStop(false);
-      const temp = [];
-      for (var i = 0; i < GameData.length; i++) {
-        temp.push(GameData[i]);
-      }
-      setData(temp);
-      return;
-    }
-    const temp = [];
-    const lim = Math.min(left + count, GameData.length);
-    for (var i = 0; i < lim; i++) {
-      temp.push(GameData[i]);
-    }
-    setData(temp);
-    setStart(left + count);
-  };
   const gameDataPerCategoryHandler = (temp) => {
     const filterGamesByCategory = [];
     var flag = 0;
@@ -305,16 +279,7 @@ const GamePage = () => {
             <input type="checkbox" id="" />
           </Options>
           <Result>
-            <InfiniteScroll
-              dataLength={data.length}
-              next={fetchData}
-              hasMore={stop}
-              loader={<h4>Loading...</h4>}
-            >
-              {data.map((d) => (
-                <h2>{d.name}</h2>
-              ))}
-            </InfiniteScroll>
+            <GameHelper />
           </Result>
         </Backdrop>
       </Background>
