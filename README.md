@@ -1,17 +1,16 @@
 # Code_To_Thrive-WebOCode
 ## A Complete Website named Infinity built by team Code_To_Thrive for WebOCode Hackathon
-### Our Website contains more then 6000 games that we have scraped from 5 gaming websites using NodeJS and cherio
 ### Due to Cors Headers always run Frontend server at Port 3000 or you can add your port in app.js file present in infinity_games-Backend folder
 
-### Featuees
-1-#### Our Website contains more then 6000 games that we have scraped from 5 gaming websites using NodeJS and cherio
-2-#### Game Categories to search for->
+### Features
+1-Our Website contains more then 6000 games that we have scraped from 5 gaming websites using NodeJS and cherio<br>
+2-Game Categories to search for-><br>
 1-Action<br>
 2-Adventure<br>
 3-Arcade<br>
 4-Shooting<br>
 5-Puzzle<br>
-3-#### Find games that match your keyword
+3-Find games that match your keyword<br>
 
 ### Setup Backend on Local System
 1-Git Clone this Repository using-><br>
