@@ -3,7 +3,7 @@
 ### Our Website contains more then 6000 games that we have scraped from 5 gaming websites using NodeJS and cherio
 ### Due to Cors Headers always run Frontend server at Port 3000 or you can add your port in app.js file present in infinity_games-Backend folder
 
-## Featuees
+### Featuees
 1-#### Our Website contains more then 6000 games that we have scraped from 5 gaming websites using NodeJS and cherio
 2-#### Game Categories to search for->
 1-Action<br>
@@ -13,7 +13,7 @@
 5-Puzzle<br>
 3-#### Find games that match your keyword
 
-## Setup Backend on Local System
+### Setup Backend on Local System
 1-Git Clone this Repository using-><br>
 `git clone https://github.com/sarthak-2019/Code_To_Thrive-WebOCode.git`<br>
 2-Inside infinity_games-Backend folder run-><br>
@@ -21,7 +21,7 @@
 3-To start backend server-><br>
 `npm start`<br>
 <br>
-## Setup Frontend on Local System
+### Setup Frontend on Local System
 1-Git Clone this Repository using-><br>
 `git clone https://github.com/sarthak-2019/Code_To_Thrive-WebOCode.git`<br>
 2-Inside infinity_games-Frontend folder run-><br>
