@@ -10,7 +10,7 @@ const GameContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
-  margin-top: 50px; ;
+  margin-top: 50px;
 `;
 
 const Heading = styled.div`
@@ -122,8 +122,6 @@ const Game = () => {
 
   return (
     <GameContainer name="games" id="games">
-      {/* <Searchbar /> */}
-      {/* <Heading data-aos="fade-bottom">Top Trending Games</Heading> */}
       <CardDiv>
         {GameData
           ? GameData.slice(0, 21).map((game) => {
