@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { createContext, useEffect, useState } from "react";
+import React, { useCallback, createContext, useEffect, useState } from "react";
 
 const AuthContext = createContext();
 
@@ -13,7 +13,6 @@ function AuthContextProvider(props) {
   });
   const [GameData, setGameData] = useState([]);
   const [origData, setOrigData] = useState([]);
-  const [input, setInput] = useState("");
 
   async function getGames() {
     if (origData.length === 0) {
@@ -37,8 +36,6 @@ function AuthContextProvider(props) {
         setGameData,
         category,
         setCategory,
-        input,
-        setInput,
       }}
     >
       {props.children}

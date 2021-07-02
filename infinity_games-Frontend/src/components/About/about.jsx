@@ -93,8 +93,8 @@ const About = () => {
   }, []);
 
   return (
-    <Container img={Image} name="about">
-      <Backdrop id="About">
+    <Container id="about" img={Image} name="about">
+      <Backdrop>
         <Infinity>
           <Head data-aos="fade-up">
             <h2>About Us </h2>

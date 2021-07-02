@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import SearchOutlinedIcon from "@material-ui/icons/SearchOutlined";
 import styled from "styled-components";
 import AuthContext from "../../context/AuthContext";
@@ -37,113 +37,44 @@ const Logo = styled(SearchOutlinedIcon)`
   padding: 10px;
 `;
 
-const Searchbar = () => {
-  const { origData, setGameData, category, input, setInput } =
-    useContext(AuthContext);
-  function inputHandler(e) {
+const Searchbar = (props) => {
+  const { GameData, origData, setGameData, category } = useContext(AuthContext);
+  const [input, setInput] = useState("");
+
+  const inputHandler = (e) => {
+    const temp = { ...category };
     setInput(e.target.value);
     const searchedWord = e.target.value;
-    if (e.target.value === "") {
-      const filterGamesByCategory = [];
-      var flag = 0;
-      if (category.action) {
+    const filterGamesByCategory = [];
+    var flag = 0;
+    Object.keys(temp).map((category) => {
+      if (temp[category]) {
+        const cat = category[0].toUpperCase() + category.slice(1);
         flag = 1;
         for (var i = 0; i < origData.length; i++) {
-          if (origData[i].category === "Action") {
+          if (origData[i].category === cat) {
             filterGamesByCategory.push(origData[i]);
           }
         }
       }
-      if (category.adventure) {
-        flag = 1;
-        for (i = 0; i < origData.length; i++) {
-          if (origData[i].category === "Adventure") {
-            filterGamesByCategory.push(origData[i]);
-          }
-        }
-      }
-      if (category.arcade) {
-        flag = 1;
-        for (i = 0; i < origData.length; i++) {
-          if (origData[i].category === "Arcade") {
-            filterGamesByCategory.push(origData[i]);
-          }
-        }
-      }
-      if (category.puzzle) {
-        flag = 1;
-        for (i = 0; i < origData.length; i++) {
-          if (origData[i].category === "Puzzle") {
-            filterGamesByCategory.push(origData[i]);
-          }
-        }
-      }
-      if (category.shooting) {
-        flag = 1;
-        for (i = 0; i < origData.length; i++) {
-          if (origData[i].category === "Shooting") {
-            filterGamesByCategory.push(origData[i]);
-          }
-        }
-      }
-      setGameData(filterGamesByCategory);
-      if (!flag) {
-        setGameData(origData);
-      }
+    });
+    if (!flag) {
+      setGameData(origData);
+      const newFilter = origData.filter((value) => {
+        return value.name.toLowerCase().includes(searchedWord.toLowerCase());
+      });
+      props.setend(20);
+      setGameData(newFilter);
     } else {
-      const filterGamesByCategory = [];
-      flag = 0;
-      if (category.action) {
-        flag = 1;
-        for (i = 0; i < origData.length; i++) {
-          if (origData[i].category === "Action") {
-            filterGamesByCategory.push(origData[i]);
-          }
-        }
-      }
-      if (category.adventure) {
-        flag = 1;
-        for (i = 0; i < origData.length; i++) {
-          if (origData[i].category === "Adventure") {
-            filterGamesByCategory.push(origData[i]);
-          }
-        }
-      }
-      if (category.arcade) {
-        flag = 1;
-        for (i = 0; i < origData.length; i++) {
-          if (origData[i].category === "Arcade") {
-            filterGamesByCategory.push(origData[i]);
-          }
-        }
-      }
-      if (category.puzzle) {
-        flag = 1;
-        for (i = 0; i < origData.length; i++) {
-          if (origData[i].category === "Puzzle") {
-            filterGamesByCategory.push(origData[i]);
-          }
-        }
-      }
-      if (category.shooting) {
-        flag = 1;
-        for (i = 0; i < origData.length; i++) {
-          if (origData[i].category === "Shooting") {
-            filterGamesByCategory.push(origData[i]);
-          }
-        }
-      }
-      if (!flag) {
-        for (i = 0; i < origData.length; i++) {
-          filterGamesByCategory.push(origData[i]);
-        }
-      }
+      setGameData(filterGamesByCategory);
       const newFilter = filterGamesByCategory.filter((value) => {
         return value.name.toLowerCase().includes(searchedWord.toLowerCase());
       });
+      props.setend(20);
       setGameData(newFilter);
     }
-  }
+  };
+
   return (
     <React.Fragment>
       <Container>

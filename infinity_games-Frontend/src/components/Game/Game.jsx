@@ -4,6 +4,9 @@ import Cards from "../Cards/Cards";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Aos from "aos";
+import { isMobile } from "react-device-detect";
+import { useState } from "react";
+import Skeleton from "@material-ui/lab/Skeleton";
 
 const GameContainer = styled.div`
   width: 100%;
@@ -22,10 +25,8 @@ const CardDiv = styled.div`
   gap: 20px;
   margin: 0 auto;
   margin-bottom: 50px;
-  /* margin-top: 20px; */
   div:last-child {
     justify-self: flex-start;
-    /* margin-right:500px; */
   }
   a {
     color: black;
@@ -116,19 +117,34 @@ export const Search = styled.button`
 `;
 
 const Game = () => {
+  const { GameData } = useContext(AuthContext);
+  const [cardnumber, setcardnumber] = useState(21);
+  const [emptyarr, setemptyarr] = useState([]);
+
   useEffect(() => {
     Aos.init({ duration: 1000 });
   }, []);
-  const { GameData } = useContext(AuthContext);
+
+  useEffect(() => {
+    const arr = [];
+    for (let i = 0; i < 21; i++) {
+      arr.push(i);
+    }
+    setemptyarr(arr);
+    if (isMobile) {
+      setcardnumber(9);
+    } else {
+    }
+  }, []);
 
   return (
     <GameContainer name="games" id="games">
       <H1>Top Trending Games.</H1>
       <CardDiv>
-        {GameData
-          ? GameData.slice(0, 21).map((game) => {
+        {GameData.length !== 0
+          ? GameData.slice(0, cardnumber).map((game) => {
               return (
-                <React.Fragment>
+                <React.Fragment key={game.herf_link}>
                   <a target="_blank" href={game.href_link}>
                     <Cards
                       title={game.name}
@@ -140,11 +156,17 @@ const Game = () => {
                 </React.Fragment>
               );
             })
-          : null}
+          : emptyarr.map((data) => {
+              return (
+                <React.Fragment key={data}>
+                  <Skeleton variant="rect" width={300} height={70} />
+                </React.Fragment>
+              );
+            })}
       </CardDiv>
       <SearchDiv>
         <Link to="GamePage">
-          <Search data-aos="fade-up">Search More</Search>
+          <Search>Search More</Search>
         </Link>
       </SearchDiv>
     </GameContainer>

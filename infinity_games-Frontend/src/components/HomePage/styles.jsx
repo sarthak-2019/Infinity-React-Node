@@ -45,7 +45,7 @@ export const VideoContainer = styled.div`
   }
   @keyframes animate {
     0% {
-      height: 75px;
+      height: 80px;
     }
     100% {
       height: 65px;

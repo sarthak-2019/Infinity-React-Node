@@ -6,11 +6,10 @@ import "aos/dist/aos.css";
 import { AuthContextProvider } from "./context/AuthContext";
 import { BrowserRouter } from "react-router-dom";
 
-
 ReactDOM.render(
   <React.StrictMode>
     <AuthContextProvider>
-      <BrowserRouter>
+      <BrowserRouter basename="The-Infinity">
         <App />
       </BrowserRouter>
     </AuthContextProvider>

@@ -14,7 +14,7 @@ const NavbarContainer = styled.div`
   align-items: center;
   padding: 25px 0;
   z-index: 5000;
-  .nav-about {
+  .right {
     margin-right: 50px;
   }
   transition: all 0.2s ease;
@@ -59,7 +59,7 @@ const MobileIcon = styled.div`
   @media screen and (max-width: 800px) {
     display: flex;
     svg {
-      margin-right: 20px;
+      margin-right: 50px;
       font-size: 32px;
       margin-top: auto;
       margin-bottom: auto;
@@ -131,13 +131,13 @@ const Navbar = (props) => {
         <ResNavItem onClick={() => scrollToMobile("games")}>Games</ResNavItem>
         <ResNavItem onClick={() => scrollToMobile("about")}>About</ResNavItem>
       </BackDrop>
-      <NavItem className="navbar-items" onClick={() => scrollTo("home")}>
+      <NavItem className="nav-item" onClick={() => scrollTo("home")}>
         Home
       </NavItem>
-      <NavItem onClick={() => scrollTo("games")} className="gamesbutton">
+      <NavItem onClick={() => scrollTo("games")} className="nav-item">
         Games
       </NavItem>
-      <NavItem className="nav-about" onClick={() => scrollTo("about")}>
+      <NavItem className="right nav-item" onClick={() => scrollTo("about")}>
         About
       </NavItem>
     </NavbarContainer>

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <div class="footer">
+    <div className="footer">
       <div className="logo_contianer">
         <h1>Infinity</h1>
       </div>
