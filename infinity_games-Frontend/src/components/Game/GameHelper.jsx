@@ -1,8 +1,11 @@
-import React, { useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import AuthContext from "../../context/AuthContext";
 import Cards from "../Cards/Cards";
 import styled from "styled-components";
 import Aos from "aos";
+import Skeleton from "@material-ui/lab/Skeleton";
+import { makeStyles } from "@material-ui/core";
+
 const GameContainer = styled.div`
   width: 100%;
   display: flex;
@@ -12,7 +15,7 @@ const GameContainer = styled.div`
 `;
 
 const CardDiv = styled.div`
-  width: 80%;
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -20,10 +23,8 @@ const CardDiv = styled.div`
   gap: 20px;
   margin: 0 auto;
   margin-bottom: 50px;
-  /* margin-top: 20px; */
   div:last-child {
     justify-self: flex-start;
-    /* margin-right:500px; */
   }
   a {
     color: black;
@@ -97,19 +98,37 @@ export const Search = styled.button`
   }
 `;
 
-const Game = () => {
+const useStyles = makeStyles({
+  skeleton: {
+    backgroundColor: "#353535",
+    borderRadius: "5px",
+  },
+});
+
+const Game = (props) => {
   const { GameData } = useContext(AuthContext);
+  const [emptyarr, setemptyarr] = useState([]);
+  const classes = useStyles();
+
   useEffect(() => {
     Aos.init({ duration: 1000 });
   }, []);
 
+  useEffect(() => {
+    const arr = [];
+    for (let i = 0; i < 21; i++) {
+      arr.push(i);
+    }
+    setemptyarr(arr);
+  }, []);
+
   return (
-    <GameContainer name="games" id="games">
+    <GameContainer>
       <CardDiv>
-        {GameData
-          ? GameData.slice(0, 21).map((game) => {
+        {GameData.length !== 0
+          ? GameData.slice(0, props.end).map((game) => {
               return (
-                <React.Fragment>
+                <React.Fragment key={game.href_link}>
                   <a target="_blank" href={game.href_link}>
                     <Cards
                       title={game.name}
@@ -121,7 +140,18 @@ const Game = () => {
                 </React.Fragment>
               );
             })
-          : null}
+          : emptyarr.map((data) => {
+              return (
+                <React.Fragment key={data}>
+                  <Skeleton
+                    className={classes.skeleton}
+                    variant="rect"
+                    width={300}
+                    height={70}
+                  />
+                </React.Fragment>
+              );
+            })}
       </CardDiv>
     </GameContainer>
   );

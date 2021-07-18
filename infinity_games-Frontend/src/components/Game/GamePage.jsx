@@ -1,10 +1,12 @@
-import React, { useState, useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Searchbar from "../Searchbar/searchbar";
 import Image from "../../assets/images/game.jpg";
 import AuthContext from "../../context/AuthContext";
 import GameHelper from "./GameHelper";
+import ScrollToTop from "../../ScrollToTop";
+
 const Heading = styled.div`
   padding: 20px 0;
   width: 100%;
@@ -27,6 +29,10 @@ const Background = styled.div`
 `;
 
 const Backdrop = styled.div`
+  .checked {
+    background-color: #ddd;
+    color: black;
+  }
   background: rgba(0, 0, 0, 0.5);
 `;
 
@@ -37,17 +43,11 @@ const Options = styled.div`
   width: 50%;
   margin: 20px auto;
   gap: 15px;
-  @media screen and (max-width: 800px) {
-    font-size: 10px;
-    flex-wrap: wrap;
-    width: 100%;
-  }
-  input[type="checkbox"] {
-    display: none;
-  }
 
-  label {
+  input[type="button"] {
     background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
     padding: 10px;
     border-radius: 5px;
     &:hover {
@@ -56,9 +56,16 @@ const Options = styled.div`
       cursor: pointer;
     }
   }
-  input[type="checkbox"]:checked + .whatever {
-    background-color: #ddd;
-    color: black;
+
+  .check {
+    background-color: white !important;
+    color: black !important;
+  }
+
+  @media screen and (max-width: 800px) {
+    font-size: 10px;
+    flex-wrap: wrap;
+    width: 100%;
   }
 `;
 
@@ -133,184 +140,71 @@ export const Search = styled.button`
 `;
 
 const GamePage = () => {
-  const { origData, setGameData, setCategory } = useContext(AuthContext);
-  const [action1, setAction] = useState(false);
-  const [adventure1, setAdventure] = useState(false);
-  const [arcade1, setArcade] = useState(false);
-  const [puzzle1, setPuzzle] = useState(false);
-  const [shooting1, setShooting] = useState(false);
+  const { category, origData, setGameData, setCategory } =
+    useContext(AuthContext);
+  const [end, setend] = useState(20);
+
+  const OptionsChangeHandler = (event) => {
+    document.querySelectorAll(".options").forEach((option) => {
+      if (option == event.target) {
+        event.target.classList.toggle("check");
+      }
+    });
+
+    const temp = { ...category };
+    temp[event.target.id] = !temp[event.target.id];
+    setCategory(temp);
+    gameDataPerCategoryHandler(temp);
+  };
 
   const gameDataPerCategoryHandler = (temp) => {
     const filterGamesByCategory = [];
     var flag = 0;
-    if (temp.action) {
-      flag = 1;
-      for (var i = 0; i < origData.length; i++) {
-        if (origData[i].category === "Action") {
-          filterGamesByCategory.push(origData[i]);
+    Object.keys(temp).map((category) => {
+      console.log(temp[category]);
+      if (temp[category]) {
+        const cat = category[0].toUpperCase() + category.slice(1);
+        flag = 1;
+        for (var i = 0; i < origData.length; i++) {
+          if (origData[i].category === cat) {
+            filterGamesByCategory.push(origData[i]);
+          }
         }
       }
-    }
-    if (temp.adventure) {
-      flag = 1;
-      for (i = 0; i < origData.length; i++) {
-        if (origData[i].category === "Adventure") {
-          filterGamesByCategory.push(origData[i]);
-        }
-      }
-    }
-    if (temp.arcade) {
-      flag = 1;
-      for (i = 0; i < origData.length; i++) {
-        if (origData[i].category === "Arcade") {
-          filterGamesByCategory.push(origData[i]);
-        }
-      }
-    }
-    if (temp.puzzle) {
-      flag = 1;
-      for (i = 0; i < origData.length; i++) {
-        if (origData[i].category === "Puzzle") {
-          filterGamesByCategory.push(origData[i]);
-        }
-      }
-    }
-    if (temp.shooting) {
-      flag = 1;
-      for (i = 0; i < origData.length; i++) {
-        if (origData[i].category === "Shooting") {
-          filterGamesByCategory.push(origData[i]);
-        }
-      }
-    }
+    });
     setGameData(filterGamesByCategory);
     if (!flag) {
       setGameData(origData);
     }
   };
-  const actionChangeHandler = () => {
-    var temp = {};
-    if (action1 === false) {
-      setAction(true);
-      temp = {
-        action: true,
-        adventure: adventure1,
-        arcade: arcade1,
-        puzzle: puzzle1,
-        shooting: shooting1,
-      };
-    } else {
-      setAction(false);
-      temp = {
-        action: false,
-        adventure: adventure1,
-        arcade: arcade1,
-        puzzle: puzzle1,
-        shooting: shooting1,
-      };
-    }
-    setCategory(temp);
-    gameDataPerCategoryHandler(temp);
-  };
-  const adventureChangeHandler = () => {
-    var temp = {};
-    if (adventure1 === false) {
-      setAdventure(true);
-      temp = {
-        action: action1,
-        adventure: true,
-        arcade: arcade1,
-        puzzle: puzzle1,
-        shooting: shooting1,
-      };
-    } else {
-      setAdventure(false);
-      temp = {
-        action: action1,
-        adventure: false,
-        arcade: arcade1,
-        puzzle: puzzle1,
-        shooting: shooting1,
-      };
-    }
-    setCategory(temp);
-    gameDataPerCategoryHandler(temp);
-  };
-  const arcadeChangeHandler = () => {
-    var temp = {};
-    if (arcade1 === false) {
-      setArcade(true);
-      temp = {
-        action: action1,
-        adventure: adventure1,
-        arcade: true,
-        puzzle: puzzle1,
-        shooting: shooting1,
-      };
-    } else {
-      setArcade(false);
-      temp = {
-        action: action1,
-        adventure: adventure1,
-        arcade: false,
-        puzzle: puzzle1,
-        shooting: shooting1,
-      };
-    }
-    setCategory(temp);
-    gameDataPerCategoryHandler(temp);
-  };
-  const puzzleChangeHandler = () => {
-    var temp = {};
-    if (puzzle1 === false) {
-      setPuzzle(true);
-      temp = {
-        action: action1,
-        adventure: adventure1,
-        arcade: arcade1,
-        puzzle: true,
-        shooting: shooting1,
-      };
-    } else {
-      setPuzzle(false);
-      temp = {
-        action: action1,
-        adventure: adventure1,
-        arcade: arcade1,
-        puzzle: false,
-        shooting: shooting1,
-      };
-    }
-    setCategory(temp);
-    gameDataPerCategoryHandler(temp);
-  };
-  const shootingChangeHandler = () => {
-    var temp = {};
-    if (shooting1 === false) {
-      setShooting(true);
-      temp = {
-        action: action1,
-        adventure: adventure1,
-        arcade: arcade1,
-        puzzle: puzzle1,
-        shooting: true,
-      };
-    } else {
-      setShooting(false);
-      temp = {
-        action: action1,
-        adventure: adventure1,
-        arcade: arcade1,
-        puzzle: puzzle1,
-        shooting: false,
-      };
-    }
-    setCategory(temp);
-    gameDataPerCategoryHandler(temp);
-  };
+
+  useEffect(() => {
+    const temp = { ...category };
+    Object.keys(temp).map((category) => {
+      console.log(temp[category]);
+      if (temp[category]) {
+        document.getElementById(`${category}`).classList.toggle("check");
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    const onScroll = () => {
+      if (
+        window.innerHeight + window.scrollY >=
+        document.body.offsetHeight - 100
+      ) {
+        console.log("changed");
+        setend((prevstate) => 20 + prevstate);
+      }
+    };
+
+    window.addEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <React.Fragment>
+      <ScrollToTop />
       <Background>
         <Backdrop>
           <Heading>THE INFINITE ENCOUNTERS</Heading>
@@ -319,40 +213,46 @@ const GamePage = () => {
               <Search>Back to Home</Search>
             </Link>
           </SearchDiv>
-          <Searchbar />
+          <Searchbar setend={setend} />
           <Options>
-            <input type="checkbox" id="action" onClick={actionChangeHandler} />
-            <label class="whatever" for="action">
-              Action
-            </label>
             <input
-              type="checkbox"
+              className="options"
+              type="button"
+              id="action"
+              onClick={OptionsChangeHandler}
+              value="Action"
+            />
+            <input
+              className="options"
+              type="button"
               id="adventure"
-              onClick={adventureChangeHandler}
+              onClick={OptionsChangeHandler}
+              value="Adventure"
             />
-            <label class="whatever" for="adventure">
-              Adventure
-            </label>
-            <input type="checkbox" id="arcade" onClick={arcadeChangeHandler} />
-            <label class="whatever" for="arcade">
-              Arcade
-            </label>
-            <input type="checkbox" id="puzzle" onClick={puzzleChangeHandler} />
-            <label class="whatever" for="puzzle">
-              Puzzle
-            </label>
             <input
-              type="checkbox"
-              id="shooting"
-              onClick={shootingChangeHandler}
+              className="options"
+              type="button"
+              value="Arcade"
+              id="arcade"
+              onClick={OptionsChangeHandler}
             />
-            <label class="whatever" for="shooting">
-              Shooting
-            </label>
-            <input type="checkbox" id="" />
+            <input
+              className="options"
+              type="button"
+              value="Puzzle"
+              id="puzzle"
+              onClick={OptionsChangeHandler}
+            />
+            <input
+              className="options"
+              type="button"
+              value="Shooting"
+              id="shooting"
+              onClick={OptionsChangeHandler}
+            />
           </Options>
           <Result>
-            <GameHelper />
+            <GameHelper end={end} />
           </Result>
         </Backdrop>
       </Background>

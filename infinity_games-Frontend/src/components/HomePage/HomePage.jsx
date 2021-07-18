@@ -27,22 +27,73 @@ const HomePage = () => {
       };
     }
   }, []);
+
   useEffect(() => {
+    const navitems = document.querySelectorAll(".nav-item");
+    const home = document.querySelector("#home");
+    const games = document.querySelector("#games");
+    const about = document.querySelector("#about");
+    console.log(home, games, about);
+
     const options = {
-      rootMargin: "-150px 0px 0px 0px",
+      threshold: 0.4,
     };
-    const home = document.getElementById("home");
+
+    const options1 = {
+      threshold: 0.6,
+    };
+
     const observer1 = new IntersectionObserver((entries, observer) => {
       entries.forEach((entry) => {
-        if (!entry.isIntersecting) {
-          document.getElementById("navbar").classList.add("animate");
-        } else {
-          document.getElementById("navbar").classList.remove("animate");
+        if (entry.intersectionRatio > 0) {
+          if (entry.isIntersecting) {
+            navitems.forEach((el) => {
+              if (el.innerHTML == "Home") el.classList.add("active");
+              else el.classList.remove("active");
+            });
+            document.getElementById("navbar").classList.remove("animate");
+          } else {
+            document.getElementById("navbar").classList.add("animate");
+          }
+          console.log("ENTRY", entry.isIntersecting);
         }
       });
     }, options);
+
+    const observer2 = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.intersectionRatio > 0) {
+          if (entry.isIntersecting) {
+            navitems.forEach((el) => {
+              if (el.innerHTML == "Games") el.classList.add("active");
+              else el.classList.remove("active");
+            });
+          }
+        }
+        console.log("ENTRY", entry.isIntersecting);
+      });
+    }, options1);
+
+    const observer3 = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.intersectionRatio > 0) {
+          if (entry.isIntersecting) {
+            navitems.forEach((el) => {
+              console.log("hello");
+              if (el.innerHTML == "About") el.classList.add("active");
+              else el.classList.remove("active");
+            });
+          }
+        }
+        console.log("ENTRY", entry.isIntersecting);
+      });
+    }, options1);
+
     observer1.observe(home);
+    observer2.observe(games);
+    observer3.observe(about);
   }, []);
+
   return (
     <React.Fragment>
       <VideoContainer name="home" id="home">
